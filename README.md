@@ -48,7 +48,6 @@ Comprehensive documentation is available in the [docs/](docs/) folder:
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - Technical architecture overview
 - [docs/DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md) - Database design and schema
 - [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Supabase configuration guide
-- [docs/INITIAL_TASKS.md](docs/INITIAL_TASKS.md) - Task breakdown for Linear
 
 ## Quick Start
 
