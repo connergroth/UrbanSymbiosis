@@ -189,8 +189,8 @@ git commit -m "chore: resolve merge conflicts"
 
 ## Resources
 
-- [Supabase Documentation](https://supabase.io/docs)
+- [Supabase Documentation](https://supabase.com/docs)
 - [React Documentation](https://react.dev)
 - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
 - [TypeScript Handbook](https://www.typescriptlang.org/docs/)
-- [Linear Keyboard Shortcuts](https://linear.app/docs/keyboard-shortcuts)
+- [Linear Documentation](https://linear.app/docs)
