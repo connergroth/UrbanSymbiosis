@@ -47,7 +47,6 @@ Comprehensive documentation is available in the [docs/](docs/) folder:
 - [docs/WORKFLOW.md](docs/WORKFLOW.md) - Team workflow and Git practices
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) - Technical architecture overview
 - [docs/DATABASE_SCHEMA.md](docs/DATABASE_SCHEMA.md) - Database design and schema
-- [docs/SUPABASE_SETUP.md](docs/SUPABASE_SETUP.md) - Supabase configuration guide
 
 ## Quick Start
 
