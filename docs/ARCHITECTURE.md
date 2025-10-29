@@ -15,7 +15,7 @@ Urban Symbiosis is a community membership platform that serves as a "one-stop sh
 ### Backend
 - **Node.js** - Runtime
 - **Express** - Web framework
-- **TypeScript** - Type safety
+- **JavaScript (ES2022)** - Backend language
 - **Supabase** - Backend as a Service (BaaS)
   - PostgreSQL database
   - Authentication
@@ -53,7 +53,7 @@ Urban Symbiosis is a community membership platform that serves as a "one-stop sh
              ▼                           ▼
 ┌────────────────────────────┐  ┌──────────────────────────┐
 │   Node.js Backend          │  │      Supabase            │
-│   (Express + TypeScript)   │  │                          │
+│   (Express + JavaScript)   │  │                          │
 │                            │  │  ┌────────────────────┐  │
 │  ┌──────────────────────┐  │  │  │  PostgreSQL DB     │  │
 │  │  Routes              │  │  │  └────────────────────┘  │
@@ -235,7 +235,7 @@ User Action → React Component
 1. **Mobile-First**: Design and build for mobile devices first
 2. **Accessibility**: WCAG 2.1 AA compliance
 3. **Progressive Enhancement**: Core functionality works without JavaScript
-4. **Type Safety**: Strict TypeScript across the stack
+4. **Type Safety**: Strict TypeScript for frontend, JavaScript for backend
 5. **Testing**: Unit tests, integration tests, E2E tests
 6. **Documentation**: Code comments, API docs, architecture docs
 7. **Monitoring**: Error tracking, performance monitoring, usage analytics
