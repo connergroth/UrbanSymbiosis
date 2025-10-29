@@ -6,17 +6,24 @@
 // https://supabase.com/docs/guides/getting-started/tutorials/with-react
 // https://supabase.com/docs/reference/javascript/auth-getsession
 
-import { createContext, useState, useEffect, useContext } from 'react';
+import { ReactNode, createContext, useState, useEffect, useContext } from 'react';
+import { Session } from '@supabase/supabase-js';
 import { supabase } from '../lib/supabase';
 
-const AuthContext = createContext<any>({
+interface AuthContextType {
+  session: Session | null;
+  login: () => void;
+  logout: () => void;
+}
+
+const AuthContext = createContext<AuthContextType | undefined>({
   session: null,
   login: () => {},
   logout: () => {},
 });
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [session, setSession] = useState<any>(null);
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [session, setSession] = useState<Session | null>(null);
 
   useEffect(() => {
     const getSession = async () => {
@@ -26,7 +33,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           error,
         } = await supabase.auth.getSession();
         if (error) {
-          throw error;
+          console.error('Error:', error);
         } else {
           setSession(session);
           console.log('Session:', session);
@@ -36,7 +43,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       }
     };
 
-    getSession();
+    getSession().catch(console.error);
 
     const {
       data: { subscription },
