@@ -1,16 +1,21 @@
-// TODO: Set up React 18 root and render App component
 // References:
 // - https://react.dev/reference/react-dom/client/createRoot
+// - https://react.dev/reference/react/StrictMode
 
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import App from './App.tsx';
+import { AuthProvider } from './contexts/AuthContext.tsx';
 
-// TODO: Import and render App component here
-// TODO: Wrap App with AuthProvider from contexts/AuthContext.tsx
+const element = document.getElementById('root');
 
-// Placeholder - replace with actual App rendering
-const root = document.getElementById('root');
-if (root) {
-  root.innerHTML = '<div>App entry point - TODO: implement</div>';
+if (element) {
+  const root = createRoot(element);
+  root.render(
+    <StrictMode>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </StrictMode>
+  );
 }
-
