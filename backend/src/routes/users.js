@@ -1,3 +1,4 @@
+import { validateUUID } from '../middleware/validateUUID.js';
 import express from 'express';
 import supabase from '../lib/supabase.js';
 
@@ -22,7 +23,7 @@ router.get('/', async (req, res) => {
  * GET /users/:id
  * Fetch a single user by ID
  */
-router.get('/:id', async (req, res) => {
+router.get('/:id', validateUUID, async (req, res) => {
   const { id } = req.params;
   try {
     const { data, error } = await supabase
