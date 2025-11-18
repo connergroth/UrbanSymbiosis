@@ -16,5 +16,5 @@ export default function LoginButton({ label }) {
     button_text = label;
   }
 
-  return <button className="bg-green-400 hover:bg-gray-400 focus:bg-red-400 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>{button_text}</button>;
+  return <button className="bg-green-400 hover:bg-gray-400 focus:bg-gray-400 text-white font-bold py-2 px-4 rounded" onClick={handleClick}>{button_text}</button>;
 }
