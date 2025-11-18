@@ -4,7 +4,8 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
-import Home from './pages/Home.tsx';
+// Updated import to point to new DashboardLayout
+import { DashboardLayout } from './pages/Dashboard/DashboardLayout';
 import Login from './pages/Login.tsx';
 
 function App() {
@@ -12,7 +13,8 @@ function App() {
     <AuthProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          {/* Updated to use DashboardLayout instead of the old Home component */}
+          <Route path="/" element={<DashboardLayout />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />
         </Routes>
