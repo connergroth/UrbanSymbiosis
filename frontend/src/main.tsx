@@ -7,6 +7,8 @@ import { createRoot } from 'react-dom/client';
 import App from './App.tsx';
 import { AuthProvider } from './contexts/AuthContext.tsx';
 
+import './index.css'
+
 const element = document.getElementById('root');
 
 if (element) {
