@@ -1,7 +1,13 @@
 import express from 'express';
 import supabase from '../lib/supabase.js';
+import { validateBody, bookingSchema } from '../middleware/validation.js';
 
 const router = express.Router();
+
+router.post('/', validateBody(bookingSchema), async (req, res) => {
+  res.json({ message: "Booking validated successfully (placeholder)" });
+});
+
 
 /**
  * GET /bookings
