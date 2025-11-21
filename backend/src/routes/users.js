@@ -1,7 +1,13 @@
 import express from 'express';
 import supabase from '../lib/supabase.js';
+import { validateBody, userSchema } from '../middleware/validation.js';
 
 const router = express.Router();
+
+router.post('/', validateBody(userSchema), async (req, res) => {
+  res.json({ message: "User validated successfully (placeholder)" });
+});
+
 
 /**
  * GET /users
