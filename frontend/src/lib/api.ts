@@ -1,6 +1,10 @@
 // API Client for backend requests
 
-import { supabase } from './supabase';
+// references:
+// https://dmitripavlutin.com/javascript-fetch-async-await/
+// https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+
+import { useAuth } from '../contexts/AuthContext';
 
 // Base API URL - use Vite proxy in dev, env var in production
 const API_BASE_URL = import.meta.env.VITE_API_URL || '/api';
@@ -31,42 +35,66 @@ export interface ApiError {
 }
 
 // Base API client function
-// TODO: Implement fetch wrapper with:
-// - JWT token handling from AuthContext
-// - Error handling (network errors, 4xx, 5xx)
-// - Proper headers (Content-Type, Authorization)
-// - CORS handling
-async function apiClient<T>(
-  endpoint: string,
-  options?: RequestInit
-): Promise<T> {
-  // TODO: Get JWT token from supabase session
-  // const session = await supabase.auth.getSession();
-  // const token = session.data.session?.access_token;
 
-  // TODO: Implement fetch with error handling
-  throw new Error('Not implemented');
+export function useApiClient() {
+  const { session } = useAuth(); // added wrapping in order to use useAuth() hook
+  const token = session?.access_token;
+
+  async function apiClient<T>(endpoint: string, options?: RequestInit): Promise<T> {
+    try {
+      const response = await fetch(`${API_BASE_URL}${endpoint}`, {
+        ...options,
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        // 4xx, 5xx
+        const error: ApiError = await response.json().catch();
+        throw new Error(error.message);
+      }
+
+      return await response.json();
+    } catch (error: any) {
+      // network errors
+      const apiError: ApiError = {
+        error: error.message,
+      };
+      throw apiError;
+    }
+  }
+
+  return { apiClient };
 }
 
-// API functions for users
-export async function getUsers(): Promise<User[]> {
-  // TODO: Call GET /users endpoint
-  throw new Error('Not implemented');
-}
+// needed to create a React hook in order to use useAuth()
+export function useApi() {
+  const { apiClient } = useApiClient();
 
-export async function getUserById(id: string): Promise<User> {
-  // TODO: Call GET /users/:id endpoint
-  throw new Error('Not implemented');
-}
+  // API functions for users
+  async function getUsers(): Promise<User[]> {
+    return apiClient<User[]>('/users');
+  }
 
-// API functions for bookings
-export async function getBookings(): Promise<Booking[]> {
-  // TODO: Call GET /bookings endpoint
-  throw new Error('Not implemented');
-}
+  async function getUserById(id: string): Promise<User> {
+    return apiClient<User>(`/users/${id}`);
+  }
 
-export async function getBookingById(id: string): Promise<Booking> {
-  // TODO: Call GET /bookings/:id endpoint
-  throw new Error('Not implemented');
-}
+  // API functions for bookings
+  async function getBookings(): Promise<Booking[]> {
+    return apiClient<Booking[]>('/bookings');
+  }
 
+  async function getBookingById(id: string): Promise<Booking> {
+    return apiClient<Booking>(`/bookings/${id}`);
+  }
+
+  return {
+    getUsers,
+    getUserById,
+    getBookings,
+    getBookingById,
+  };
+}

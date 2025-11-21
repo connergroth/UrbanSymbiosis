@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Home from './pages/Home.tsx';
 import Login from './pages/Login.tsx';
+import { TestComponent } from './tests/useApiTest.tsx'; // for testing API routes, remove later
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<h1>404 - Page Not Found</h1>} />
+          <Route path="/test" element={<TestComponent />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
